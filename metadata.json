@@ -1,0 +1,8 @@
+{
+  "name": "Remix IT Asset \u0026 Accessories Tracker (Branch 1-22)",
+  "description": "Excel-style IT Asset and Accessories Management Tracker covering all 22 branches with System Details, Stock IN/OUT, automated day counts, low-stock alerts, and Excel export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

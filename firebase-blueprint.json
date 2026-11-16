@@ -1,0 +1,77 @@
+{
+  "entities": {
+    "SystemAsset": {
+      "title": "SystemAsset",
+      "description": "IT computer system or PC assigned to one of the 22 branches",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "branchNumber": { "type": "integer" },
+        "systemName": { "type": "string" },
+        "generation": { "type": "string" },
+        "processor": { "type": "string" },
+        "ram": { "type": "string" },
+        "storageType": { "type": "string" },
+        "storageCapacity": { "type": "string" },
+        "windowsVersion": { "type": "string" },
+        "serialNumber": { "type": "string" },
+        "issueDate": { "type": "string" },
+        "returnDate": { "type": "string" },
+        "status": { "type": "string" },
+        "remarks": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["branchNumber", "systemName", "status", "issueDate"]
+    },
+    "AccessoryStock": {
+      "title": "AccessoryStock",
+      "description": "Branch-wise stock balance for an IT accessory",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "branchNumber": { "type": "integer" },
+        "accessoryName": { "type": "string" },
+        "openingStock": { "type": "integer" },
+        "stockIn": { "type": "integer" },
+        "stockOut": { "type": "integer" },
+        "availableStock": { "type": "integer" },
+        "lastTransactionDate": { "type": "string" },
+        "remarks": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["branchNumber", "accessoryName"]
+    },
+    "StockTransaction": {
+      "title": "StockTransaction",
+      "description": "Stock IN or OUT transaction movement log",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "transactionDate": { "type": "string" },
+        "branchNumber": { "type": "integer" },
+        "accessoryName": { "type": "string" },
+        "type": { "type": "string" },
+        "quantity": { "type": "integer" },
+        "issuedToOrFrom": { "type": "string" },
+        "referenceNo": { "type": "string" },
+        "remarks": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["branchNumber", "accessoryName", "type", "quantity", "transactionDate"]
+    }
+  },
+  "firestore": {
+    "/systems/{systemId}": {
+      "schema": "SystemAsset",
+      "description": "Collection of all branch computer systems"
+    },
+    "/accessories/{accessoryId}": {
+      "schema": "AccessoryStock",
+      "description": "Collection of branch-wise accessory stock levels"
+    },
+    "/transactions/{transactionId}": {
+      "schema": "StockTransaction",
+      "description": "Log of stock IN and OUT movements"
+    }
+  }
+}

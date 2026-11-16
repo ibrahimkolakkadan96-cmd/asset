@@ -1,0 +1,102 @@
+{
+  "name": "premier-it-asset-tracker",
+  "private": true,
+  "version": "3.0.0",
+  "description": "PREMIER IT ASSET TRACKER - Centralized Enterprise Hardware & Inventory Management (PREMIER AUTO PARTS LLC)",
+  "author": "PREMIER AUTO PARTS LLC",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite --port=3000 --host=0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rm -rf dist server.js",
+    "lint": "tsc --noEmit",
+    "electron:dev": "node electron/dev-runner.js",
+    "electron:build": "npm run build && electron-builder --win nsis --x64",
+    "electron:start": "npm run build && electron .",
+    "dev:electron": "node electron/dev-runner.js",
+    "build:exe": "npm run build && electron-builder --win nsis portable --x64",
+    "build:win": "npm run build && electron-builder --win nsis --x64",
+    "package:win": "electron-builder --win nsis portable --x64",
+    "export:zip": "node scripts/export-project-zip.mjs"
+  },
+  "build": {
+    "appId": "com.premierautoparts.itassettracker",
+    "productName": "PREMIER IT ASSET TRACKER",
+    "copyright": "Copyright © 2026 PREMIER AUTO PARTS LLC",
+    "directories": {
+      "output": "dist_electron",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "!dist/*.zip",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "PREMIER IT ASSET TRACKER",
+      "uninstallDisplayName": "PREMIER IT ASSET TRACKER",
+      "menuCategory": "PREMIER AUTO PARTS LLC",
+      "runAfterFinish": true,
+      "artifactName": "PREMIER_IT_ASSET_TRACKER_Setup.exe"
+    },
+    "portable": {
+      "artifactName": "PREMIER_IT_ASSET_TRACKER_Portable.exe"
+    }
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "@supabase/supabase-js": "^2.119.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/jszip": "^3.4.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "firebase": "^13.2.0",
+    "jszip": "^3.10.2",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "vite": "^8.3.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.4.21",
+    "electron": "^45.3.3",
+    "electron-builder": "^26.18.0",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.21.0",
+    "typescript": "^7.0.2"
+  }
+}
